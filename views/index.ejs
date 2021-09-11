@@ -1,0 +1,36 @@
+<div class="row mt-4">
+    <div class="col-md-5 m-auto">
+        <%- include('./partials/errors.ejs') %> 
+        <div class="card card-body">
+            <h3 class="text-center">Macbook Pro</h3>
+            <img src="images/apple_macbook_pro.jpg" alt="apple_macbook">
+            <h5 class="card-title mt-4">Macbook Pro</h5>
+            <div class="mb-2">
+                <div class="star-outer">
+                    <div class="star-inner"></div>
+                </div>
+                <span id="rating"><%= averageRatings %> </span>
+            </div>
+            <h6>Price: 112990</h6>
+            <h6>Company: Apple</h6>
+            <h6>Category: Smartphone</h6>
+            <h6>Details: </h6>
+            13 Inches screen size. MacOs 10.14 Mojave operating system. Anti reflective. 8GB HardDisk size. 8 processors.
+            
+            <a href="/products/rating" class="btn btn-primary form-control mb-3 mt-3">Rate Product</a>
+
+        </div>
+        <h5 class="mt-4">Reviews: </h5>
+        <div class="card card-body">
+            <% users.map(user => { %>
+                <div class="card card-body mt-2">
+                <h8><%= user.username %></h8>
+                <h6><%= user.date.toLocaleString() %> </h6>
+                <h6>Rating: <%= user.rating %> </h6>
+                <h6><%= user.review %> </h6>
+                <p><%= user.message %> </p>
+                </div>
+            <% }); %> 
+        </div>
+    </div>
+</div>

@@ -1,0 +1,52 @@
+<div class="row mt-5">
+    <div class="col-md-7 m-auto">
+        <div class="card card-body">
+            <h4 class="text-center">Create New Account</h4>
+            <form action="/products/register" method="POST">
+
+                <% if(typeof errors != undefined){ %>
+                    <% errors.map(error => { %>
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <%= error.message %> 
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    <% }); %>
+                <% } %> 
+
+                <div class="row mt-3">
+                    <label for="name" class="col-sm-3 col-form-label  ps-5">Name: </label>
+                    <div class="col-sm-7">
+                        <input type="text" name="name" id="name" class="form-control">
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <label for="email" class="col-sm-3 col-form-label ps-5">Email: </label>
+                    <div class="col-sm-7">
+                        <input type="email" name="email" id="email" class="form-control">
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <label for="password" class="col-sm-3 col-form-label ps-5">Password: </label>
+                    <div class="col-sm-7">
+                        <input type="password" name="password" id="password" class="form-control">
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <label for="confirmPassword" class="col-sm-3 col-form-label ps-5">Confirm Password: </label>
+                    <div class="col-sm-7">
+                        <input type="password" name="confirmPassword" id="confirmPassword" class="form-control">
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="d-grid col-8 m-auto  mb-2">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="d-grid col-8 m-auto  mb-5">
+                        <p class="lead">Have an Account?<a href="/products/login" >Login</a></p>
+                    </div>
+            </form> 
+        </div>
+    </div>
+</div>
