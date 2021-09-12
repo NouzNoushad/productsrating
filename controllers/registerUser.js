@@ -3,8 +3,16 @@ const Register = require("../models/Register");
 
 const registerUser = (req, res) => {
 
-    let errors = [];
-    res.render('register', { errors: errors });
+    try {
+        
+        let errors = [];
+        return res.render('register', { errors: errors });
+
+    } catch (err) {
+        
+        console.log(err);
+    }
+    
 
 }
 
@@ -36,7 +44,7 @@ const postRegisterUser = async (req, res) => {
         //errors exists
         if (errors.length > 0) {
             
-            res.render('register', { errors: errors });
+            return res.render('register', { errors: errors });
 
         } else {
             
@@ -45,7 +53,7 @@ const postRegisterUser = async (req, res) => {
             if (user) {
                 
                 errors.push({ message: 'User already exists' });
-                res.render('register', { errors: errors });
+                return res.render('register', { errors: errors });
 
             } else {
                 
@@ -71,7 +79,7 @@ const postRegisterUser = async (req, res) => {
                         //save password
                         await newUser.save();
                         
-                        res.redirect('/products/login');
+                        return res.redirect('/login');
 
                     });
                 });

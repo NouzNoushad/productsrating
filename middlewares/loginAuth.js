@@ -2,7 +2,7 @@ const loginAuth = (req, res, next) => {
 
     if (req.isAuthenticated()) {
         
-        return res.redirect('/products');
+        return res.redirect('/');
 
     }
     return next();
@@ -15,7 +15,7 @@ const ensureAuth = (req, res, next) => {
         return next();
     }
 
-    return res.redirect('/products/login');
+    return res.redirect('/login');
 }
 
 module.exports = {

@@ -4,7 +4,7 @@ const logoutUser = (req, res) => {
         
         req.logout();
         req.flash('success_msg', 'You are logged out');
-        res.redirect('/products');
+        return res.redirect('/');
 
     } catch (err) {
         

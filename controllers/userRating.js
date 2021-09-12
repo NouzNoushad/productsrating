@@ -2,8 +2,16 @@ const User = require('../models/User');
 
 const getUserRating = (req, res) => {
 
-    let errors = [];
-    return res.render('rating', {errors: errors});
+    try {
+        
+        let errors = [];
+        return res.render('rating', {errors: errors});
+
+    } catch (err) {
+        
+        console.log(err);
+    }
+    
 }
 
 const postUserRating = async (req, res) => {
@@ -48,7 +56,7 @@ const postUserRating = async (req, res) => {
             //create new user
             const newUser = await User.create(req.body);
             req.flash('success_msg', `${newUser.username} has rated the product`);
-            return res.redirect('/products');
+            return res.redirect('/');
 
         }
 

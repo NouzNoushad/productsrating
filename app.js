@@ -1,14 +1,17 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const expressLayouts = require('express-ejs-layouts');
-const session = require('cookie-session');
+const session = require('express-session');
 const passport = require('passport')
+const MongoStore = require('connect-mongo')(session);
 const flash = require('connect-flash');
 const dotenv = require('dotenv');
 
 const productRoute = require('./routes/product');
 dotenv.config({ path: './config/.env' });
-require('./config/db');
 require('./config/auth/passport')(passport);
+const connectDB = require('./config/db');
+connectDB();
 
 const app = express();
 
@@ -22,17 +25,19 @@ app.use(expressLayouts);
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-if (process.env.NODE_ENV == "production") {
+// if (process.env.NODE_ENV == "production") {
     //static files
     app.use(express.static('public'));
-}
+// }
 
 //session
 app.use(session({
 
     secret: 'secretKey',
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: true,
+    store: new MongoStore({ mongooseConnection: mongoose.connection })
+
 }));
 
 //passport middleware
@@ -50,6 +55,6 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use('/products', productRoute);
+app.use('/', productRoute);
 
 app.listen(PORT, () => console.log(`Server running on port, http://localhost:${PORT}`));
