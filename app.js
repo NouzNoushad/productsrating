@@ -25,10 +25,10 @@ app.use(expressLayouts);
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-// if (process.env.NODE_ENV == "production") {
+if (process.env.NODE_ENV == "production") {
     //static files
     app.use(express.static('public'));
-// }
+}
 
 //session
 app.use(session({
